@@ -20,8 +20,12 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  if (start > end) {
+    throw new Error('Start value must be less than or equal to the end value.');
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
 }
 
 /**
@@ -37,8 +41,19 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(array1, array2) {
+  let minArray = array1;
+  let maxArray = array2;
+  if (array2.length < array1.length) {
+    minArray = array2;
+    maxArray = array1;
+  }
+  return maxArray.map((el, i) => {
+    if (i < minArray.length) {
+      return el + minArray[i];
+    }
+    return el;
+  });
 }
 
 /**
@@ -53,8 +68,9 @@ function sumArrays(/* arr1, arr2 */) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+function findElement(arr, value) {
+  const index = arr.indexOf(value);
+  return index !== -1 ? index : -1;
 }
 
 /**
